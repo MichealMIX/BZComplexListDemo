@@ -4,6 +4,46 @@
 <array>
 	<dict>
 		<key>UserHeaderUrl</key>
+		<string>http://up.enterdesk.com/edpic/a7/97/76/a79776ebbd102a9c9b1826c3ad039c41.jpg</string>
+		<key>UserNameString</key>
+		<string>按死啊累死了</string>
+		<key>DeviceTypeString</key>
+		<string>android</string>
+		<key>ContentLabelString</key>
+		<string>从上面可以知道，尽管通用二进制文件会占用大量的磁盘空间，但是系统会挑选合适的Mach-O来执行，不相关的架构代码不会占用内存空间，且执行效率高了。</string>
+		<key>ContentImageArray</key>
+		<array>
+			<string>https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1593844456163&amp;di=fc26c898b99e801f9b52c8e0a31bbea7&amp;imgtype=0&amp;src=http%3A%2F%2Fold.wallcoo.com%2Ffilm%2F2012_05_Marvels_The_Avengers%2Fimages%2Favengers_wp1.jpg</string>
+			<string>https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=333428245,4027165269&amp;fm=26&amp;gp=0.jpg</string>
+			<string>https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1593844811584&amp;di=752810fec21e160a8672685867056aed&amp;imgtype=0&amp;src=http%3A%2F%2Fdata.bbs.18183.com%2Fattachment%2Fforum%2F201612%2F09%2F115354z1u1z7o8sochr2cz.jpg</string>
+			<string>https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1593844803895&amp;di=cd73707784c318039ada467d76715746&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.ivsky.com%2Fimg%2Fbizhi%2Fpre%2F201604%2F08%2Fthe_angry_birds_movie-007.jpg</string>
+			<string>https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1593844803891&amp;di=c19e6bf8c03a33515ba86f06691c67e0&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201609%2F25%2F20160925150704_UMViE.jpeg</string>
+			<string>https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1593844803889&amp;di=00ca2620e3143fdf2b4165fdd6c33c91&amp;imgtype=0&amp;src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn01%2F58%2Fw1024h1434%2F20180828%2Fb376-hifuvph9992270.jpg</string>
+			<string>https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1593845040712&amp;di=2c42d8e92979371460db783f4161d7f8&amp;imgtype=0&amp;src=http%3A%2F%2Fn.sinaimg.cn%2Fsd%2Fcrawl%2F59%2Fw550h309%2F20200703%2Fe79a-ivwfwmp1133140.jpg</string>
+			<string>https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1593845040710&amp;di=57ec75ac7682f0b17300be2a86828242&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201605%2F23%2F20160523004852_LZARG.jpeg</string>
+			<string>https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1593845163832&amp;di=fe64593d58d8d5d79750dafdd457f111&amp;imgtype=0&amp;src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farchive%2Fab87f44409aa563ab5259851bc95e42b2dd07646.png</string>
+		</array>
+	</dict>
+	<dict>
+		<key>UserHeaderUrl</key>
+		<string>http://imgsrc.baidu.com/forum/w=580/sign=75ce80d1f0deb48ffb69a1d6c01e3aef/3e3342a7d933c895597782cbd21373f08202000f.jpg</string>
+		<key>UserNameString</key>
+		<string>啊啊啊啊啊啊</string>
+		<key>DeviceTypeString</key>
+		<string>iPhone 6</string>
+		<key>ContentLabelString</key>
+		<string>为什么有了Mach-O格式了，苹果还搞通用二进制格式？因为不同CPU平台支持的指令不同，比如arm64和x86，那我们是不是可以把arm64和x86对应的Mach-O格式打包在一起，然后系统根据自己的CPU平台，选择合适的Mach-O。通用二进制格式就是多种架构的Mach-O文件“打包”在一起，所以通用二进制格式，更多被叫做胖二进制格式。</string>
+		<key>ContentImageArray</key>
+		<array>
+			<string>https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1593844305015&amp;di=7b38416ef4e57e4b40abe65559499549&amp;imgtype=0&amp;src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D2491119168%2C1051650544%26fm%3D214%26gp%3D0.jpg</string>
+			<string>https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2102031626,3816581832&amp;fm=26&amp;gp=0.jpg</string>
+			<string>https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1593844343330&amp;di=582e98adea3bb604dd0227eb31197cb7&amp;imgtype=0&amp;src=http%3A%2F%2Fi-7.vcimg.com%2Faa44323e6c3202f82f5a0fbbc24a99e2506419%2Forigin.jpg</string>
+			<string>https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1593844343239&amp;di=af2e91125f69fd04914029cd7c6de1db&amp;imgtype=0&amp;src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fc%2F4ff535ae1d6d9.jpg</string>
+			<string>https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1593844343325&amp;di=eba428b9b14da6445dbcdb1d68969f10&amp;imgtype=0&amp;src=http%3A%2F%2Ffile02.16sucai.com%2Fweb%2F2014%2F12%2F22024014H-12.jpg</string>
+		</array>
+	</dict>
+	<dict>
+		<key>UserHeaderUrl</key>
 		<string>http://up.enterdesk.com/edpic/20/3b/89/203b89dd4fee1cdbdd2b8f61e3262c74.jpg</string>
 		<key>UserNameString</key>
 		<string>我真的是醉了</string>
