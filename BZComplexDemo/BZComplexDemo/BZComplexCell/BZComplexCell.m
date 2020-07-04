@@ -36,6 +36,7 @@
     [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:@"http://img1.imgtn.bdimg.com/it/u=1376669560,1034200971&fm=26&gp=0.jpg"]];
     self.headerImageV.layer.cornerRadius = 20;
     self.headerImageV.layer.masksToBounds = YES;
+    self.headerImageV.backgroundColor = iColor(202, 202, 202, 1);
     [self.contentView addSubview:self.headerImageV];
     [self.headerImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@25);
@@ -78,13 +79,14 @@
         make.right.equalTo(@0).with.mas_offset(@-25);
     }];
     
-    [self updateCellWithImageArray:@[@"",@"",@""]];
+   
     
 }
 
 - (void)updateCellWithImageArray:(NSArray *)img_arr{
     int cols;
     int rows;
+    
     [self countingRow:&rows numberOfCol:&cols imageArr:img_arr];
     
     if (img_arr.count == 0) {
@@ -98,10 +100,33 @@
             make.height.equalTo(@1);
             make.bottom.equalTo(@0);
         }];
+        return;
+    }
+    
+    if (img_arr.count == 1) {
+        UIImageView *img_V = [[UIImageView alloc] init];
+        img_V.backgroundColor = iColor(202, 202, 202, 1);
+        [img_V sd_setImageWithURL:[NSURL URLWithString:img_arr[0]]];
+        [self.contentView addSubview:img_V];
+        [img_V mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(25);
+            make.top.mas_equalTo(self.contentLabel.mas_bottom).with.mas_offset(20);
+        }];
         
+        UILabel *line = [[UILabel alloc] init];
+        line.backgroundColor = iColor(231, 231, 231, 1);
+        [self.contentView addSubview:line];
+        [line mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.trailing.equalTo(@0);
+            make.top.mas_equalTo(img_V.mas_bottom).with.mas_offset(@25);
+            make.height.equalTo(@1);
+            make.bottom.equalTo(@0);
+        }];
+        return;
     }
     
     if (img_arr.count != 0) {
+        NSInteger index = 0;
         self.itemPadding = 10;
         self.itemHW = ((iScreenW-50)-((cols-1)*self.itemPadding))/cols;
         for (int i = 0; i < rows; i++) {
@@ -110,6 +135,7 @@
                 for (int j = 0; j < img_arr.count-i*cols; j++) {
                     UIImageView *img_V = [[UIImageView alloc] init];
                     img_V.backgroundColor = iColor(202, 202, 202, 1);
+                    [img_V sd_setImageWithURL:[NSURL URLWithString:img_arr[index++]]];
                     [self.contentView addSubview:img_V];
                     [img_V mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.left.mas_equalTo(j*(self.itemHW+self.itemPadding)+25);
@@ -136,6 +162,7 @@
             for (int j = 0; j < cols; j++) {
                 UIImageView *img_V = [[UIImageView alloc] init];
                 img_V.backgroundColor = iColor(202, 202, 202, 1);
+                [img_V sd_setImageWithURL:[NSURL URLWithString:img_arr[index++]]];
                 [self.contentView addSubview:img_V];
                 [img_V mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.mas_equalTo(j*(self.itemHW+self.itemPadding)+25);
@@ -146,6 +173,7 @@
         }
     }
     
+    [self layoutIfNeeded];
 }
 
 - (void)countingRow:(int *)rows numberOfCol:(int *)cols imageArr:(NSArray *)img_arr{

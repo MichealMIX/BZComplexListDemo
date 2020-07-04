@@ -64,7 +64,12 @@ static NSString *cellId = @"BZComplexCell";
     if (!cell) {
         cell = [[BZComplexCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-
+    NSDictionary *data_dict = self.dataArray[indexPath.row];
+    cell.nameTitleLabel.text = data_dict[@"UserNameString"];
+    cell.deviceTitleLabel.text = data_dict[@"DeviceTypeString"];
+    cell.contentLabel.text = data_dict[@"ContentLabelString"];
+    [cell.headerImageV sd_setImageWithURL:[NSURL URLWithString:data_dict[@"UserHeaderUrl"]]];
+    [cell updateCellWithImageArray:[data_dict objectForKey:@"ContentImageArray"]];
     return cell;
 }
 
@@ -76,7 +81,7 @@ static NSString *cellId = @"BZComplexCell";
 
 - (NSArray *)dataArray{
     if (!_dataArray) {
-        _dataArray = @[@"简单的layer添加",@"为layer添加图片",@"layer剪裁",@"layer的绘制",@"Memory monitor"];
+        _dataArray = iRes4ary(@"BZListData.plist");
     }
     return _dataArray;
 }
