@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,8 @@
 		9AF4405024AEFF6800187440 /* BZComplexDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF4404F24AEFF6800187440 /* BZComplexDemoTests.m */; };
 		9AF4405B24AEFF6900187440 /* BZComplexDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF4405A24AEFF6900187440 /* BZComplexDemoUITests.m */; };
 		9AF4406C24AF00CD00187440 /* IUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF4406924AF00CD00187440 /* IUtil.m */; };
+		9AF4407024AF068D00187440 /* BZComplexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF4406F24AF068D00187440 /* BZComplexCell.m */; };
+		9AF4407324AF06E300187440 /* BZListData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9AF4407224AF06E300187440 /* BZListData.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,9 @@
 		9AF4406924AF00CD00187440 /* IUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUtil.m; sourceTree = "<group>"; };
 		9AF4406A24AF00CD00187440 /* IUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUtil.h; sourceTree = "<group>"; };
 		9AF4406B24AF00CD00187440 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		9AF4406E24AF068D00187440 /* BZComplexCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BZComplexCell.h; sourceTree = "<group>"; };
+		9AF4406F24AF068D00187440 /* BZComplexCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BZComplexCell.m; sourceTree = "<group>"; };
+		9AF4407224AF06E300187440 /* BZListData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = BZListData.plist; sourceTree = "<group>"; };
 		9E0B5DC901A34AF1C6DFC4E3 /* Pods-BZComplexDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BZComplexDemo.debug.xcconfig"; path = "Target Support Files/Pods-BZComplexDemo/Pods-BZComplexDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		CE204A8B7531BEDA1B62E498 /* Pods_BZComplexDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BZComplexDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -112,6 +117,8 @@
 		9AF4403224AEFF6400187440 /* BZComplexDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9AF4407124AF069700187440 /* BZDataCenter */,
+				9AF4406D24AF043500187440 /* BZComplexCell */,
 				9AF4406824AF00B600187440 /* support file */,
 				9AF4403324AEFF6400187440 /* AppDelegate.h */,
 				9AF4403424AEFF6400187440 /* AppDelegate.m */,
@@ -154,13 +161,29 @@
 			path = "support file";
 			sourceTree = "<group>";
 		};
+		9AF4406D24AF043500187440 /* BZComplexCell */ = {
+			isa = PBXGroup;
+			children = (
+				9AF4406E24AF068D00187440 /* BZComplexCell.h */,
+				9AF4406F24AF068D00187440 /* BZComplexCell.m */,
+			);
+			path = BZComplexCell;
+			sourceTree = "<group>";
+		};
+		9AF4407124AF069700187440 /* BZDataCenter */ = {
+			isa = PBXGroup;
+			children = (
+				9AF4407224AF06E300187440 /* BZListData.plist */,
+			);
+			path = BZDataCenter;
+			sourceTree = "<group>";
+		};
 		F3444376F7D7780B2BB29652 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				9E0B5DC901A34AF1C6DFC4E3 /* Pods-BZComplexDemo.debug.xcconfig */,
 				556EC34F0466D2BDD76433A3 /* Pods-BZComplexDemo.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -277,6 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AF4407324AF06E300187440 /* BZListData.plist in Resources */,
 				9AF4404324AEFF6800187440 /* LaunchScreen.storyboard in Resources */,
 				9AF4404024AEFF6800187440 /* Assets.xcassets in Resources */,
 				9AF4403E24AEFF6500187440 /* Main.storyboard in Resources */,
@@ -350,6 +374,7 @@
 				9AF4406C24AF00CD00187440 /* IUtil.m in Sources */,
 				9AF4403524AEFF6400187440 /* AppDelegate.m in Sources */,
 				9AF4404624AEFF6800187440 /* main.m in Sources */,
+				9AF4407024AF068D00187440 /* BZComplexCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
