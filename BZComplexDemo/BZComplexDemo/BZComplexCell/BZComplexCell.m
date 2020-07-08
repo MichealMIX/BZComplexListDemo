@@ -95,7 +95,9 @@
     self.nameTitleLabel.text = data_dict[@"UserNameString"];
     self.deviceTitleLabel.text = data_dict[@"DeviceTypeString"];
     self.contentLabel.text = data_dict[@"ContentLabelString"];
-    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:data_dict[@"UserHeaderUrl"]]];
+    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:data_dict[@"UserHeaderUrl"]]];
+    self.headerImageV.image = [UIImage imageWithData:data];
+//    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:data_dict[@"UserHeaderUrl"]]];
     [self layoutIfNeeded];
 }
 
@@ -119,7 +121,9 @@
     if (img_arr.count == 1) {
         UIImageView *img_V = [[UIImageView alloc] init];
         img_V.backgroundColor = iColor(202, 202, 202, 1);
-        [img_V sd_setImageWithURL:[NSURL URLWithString:img_arr[0]]];
+        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:img_arr[0]]];
+        img_V.image = [UIImage imageWithData:data];
+//        [img_V sd_setImageWithURL:[NSURL URLWithString:img_arr[0]]];
         [self.contentView addSubview:img_V];
         [img_V mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(25);
@@ -147,7 +151,9 @@
                 for (int j = 0; j < img_arr.count-i*cols; j++) {
                     UIImageView *img_V = [[UIImageView alloc] init];
                     img_V.backgroundColor = iColor(202, 202, 202, 1);
-                    [img_V sd_setImageWithURL:[NSURL URLWithString:img_arr[index++]]];
+//                    [img_V sd_setImageWithURL:[NSURL URLWithString:img_arr[index++]]];
+                    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:img_arr[index++]]];
+                    img_V.image = [UIImage imageWithData:data];
                     [self.contentView addSubview:img_V];
                     [img_V mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.left.mas_equalTo(j*(self.itemHW+self.itemPadding)+25);
@@ -173,7 +179,9 @@
             for (int j = 0; j < cols; j++) {
                 UIImageView *img_V = [[UIImageView alloc] init];
                 img_V.backgroundColor = iColor(202, 202, 202, 1);
-                [img_V sd_setImageWithURL:[NSURL URLWithString:img_arr[index++]]];
+                NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:img_arr[index++]]];
+                img_V.image = [UIImage imageWithData:data];
+//                [img_V sd_setImageWithURL:[NSURL URLWithString:img_arr[index++]]];
                 [self.contentView addSubview:img_V];
                 [img_V mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.mas_equalTo(j*(self.itemHW+self.itemPadding)+25);
