@@ -65,10 +65,7 @@ static NSString *cellId = @"BZComplexCell";
         cell = [[BZComplexCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
     NSDictionary *data_dict = self.dataArray[indexPath.row];
-    cell.nameTitleLabel.text = data_dict[@"UserNameString"];
-    cell.deviceTitleLabel.text = data_dict[@"DeviceTypeString"];
-    cell.contentLabel.text = data_dict[@"ContentLabelString"];
-    [cell.headerImageV sd_setImageWithURL:[NSURL URLWithString:data_dict[@"UserHeaderUrl"]]];
+    [cell updateCellWithData:data_dict];
     [cell updateCellWithImageArray:[data_dict objectForKey:@"ContentImageArray"]];
     return cell;
 }

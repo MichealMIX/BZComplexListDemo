@@ -14,6 +14,8 @@
 
 @property(nonatomic,assign)NSInteger itemPadding;
 
+@property(nonatomic,strong)UILabel *line;
+
 @end
 
 @implementation BZComplexCell
@@ -33,9 +35,9 @@
 
 - (void)initUI{
     self.headerImageV = [[UIImageView alloc] init];
-    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:@"http://img1.imgtn.bdimg.com/it/u=1376669560,1034200971&fm=26&gp=0.jpg"]];
     self.headerImageV.layer.cornerRadius = 20;
     self.headerImageV.layer.masksToBounds = YES;
+    self.headerImageV.tag = 6888;
     self.headerImageV.backgroundColor = iColor(202, 202, 202, 1);
     [self.contentView addSubview:self.headerImageV];
     [self.headerImageV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -47,7 +49,6 @@
     self.nameTitleLabel = [[UILabel alloc] init];
     self.nameTitleLabel.font = [UIFont systemFontOfSize:14];
     self.nameTitleLabel.textColor = iColor(224, 108, 55, 1);
-    self.nameTitleLabel.text = @"只是起个名字，没想到这么麻烦";
     [self.contentView addSubview:self.nameTitleLabel];
     [self.nameTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.headerImageV);
@@ -58,7 +59,6 @@
     self.deviceTitleLabel = [[UILabel alloc] init];
     self.deviceTitleLabel.font = [UIFont systemFontOfSize:10];
     self.deviceTitleLabel.textColor = iColor(90, 123, 163, 1);
-    self.deviceTitleLabel.text = @"锐哥的iPhone X";
     [self.contentView addSubview:self.deviceTitleLabel];
     [self.deviceTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.nameTitleLabel.mas_bottom).with.mas_offset(@5);
@@ -71,7 +71,7 @@
     self.contentLabel.font = [UIFont systemFontOfSize:16];
     self.contentLabel.numberOfLines = 0;
     self.contentLabel.textColor = [UIColor blackColor];
-    self.contentLabel.text = @"这个 Demo 最低可以运行在 iOS 6 上，所以你可以把它跑到老设备上体验一下。在我的测试中，即使在 iPhone 4S 或者 iPad 3 上，Demo 列表在快速滑动时仍然能保持 50~60 FPS 的流畅交互，而其他诸如微博、朋友圈等应用的列表视图在滑动时已经有很严重的卡顿了";
+
     [self.contentView addSubview:self.contentLabel];
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.headerImageV.mas_bottom).with.mas_offset(@20);
@@ -79,8 +79,24 @@
         make.right.equalTo(@0).with.mas_offset(@-25);
     }];
     
-   
+   self.line = [[UILabel alloc] init];
+   self.line.backgroundColor = iColor(231, 231, 231, 1);
+   [self.contentView addSubview:self.line];
+   [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
+       make.leading.trailing.equalTo(@0);
+       make.top.mas_equalTo(self.contentLabel.mas_bottom).with.mas_offset(@25);
+       make.height.equalTo(@1);
+       make.bottom.equalTo(@0);
+   }];
     
+}
+
+- (void)updateCellWithData:(NSDictionary *)data_dict{
+    self.nameTitleLabel.text = data_dict[@"UserNameString"];
+    self.deviceTitleLabel.text = data_dict[@"DeviceTypeString"];
+    self.contentLabel.text = data_dict[@"ContentLabelString"];
+    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:data_dict[@"UserHeaderUrl"]]];
+    [self layoutIfNeeded];
 }
 
 - (void)updateCellWithImageArray:(NSArray *)img_arr{
@@ -88,18 +104,15 @@
     int rows;
     
     [self countingRow:&rows numberOfCol:&cols imageArr:img_arr];
-    
     if (img_arr.count == 0) {
         
-        UILabel *line = [[UILabel alloc] init];
-        line.backgroundColor = iColor(231, 231, 231, 1);
-        [self.contentView addSubview:line];
-        [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.line mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.leading.trailing.equalTo(@0);
             make.top.mas_equalTo(self.contentLabel.mas_bottom).with.mas_offset(@25);
             make.height.equalTo(@1);
             make.bottom.equalTo(@0);
         }];
+        [self layoutIfNeeded];
         return;
     }
     
@@ -111,21 +124,20 @@
         [img_V mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(25);
             make.top.mas_equalTo(self.contentLabel.mas_bottom).with.mas_offset(20);
+            make.size.mas_equalTo(CGSizeMake(150, 200));
         }];
         
-        UILabel *line = [[UILabel alloc] init];
-        line.backgroundColor = iColor(231, 231, 231, 1);
-        [self.contentView addSubview:line];
-        [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.line mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.leading.trailing.equalTo(@0);
             make.top.mas_equalTo(img_V.mas_bottom).with.mas_offset(@25);
             make.height.equalTo(@1);
             make.bottom.equalTo(@0);
         }];
+        [self layoutIfNeeded];
         return;
     }
     
-    if (img_arr.count != 0) {
+    if (img_arr.count > 1) {
         NSInteger index = 0;
         self.itemPadding = 10;
         self.itemHW = ((iScreenW-50)-((cols-1)*self.itemPadding))/cols;
@@ -145,18 +157,17 @@
                     
                     if (j == img_arr.count-i*cols -1) {
                         
-                        UILabel *line = [[UILabel alloc] init];
-                        line.backgroundColor = iColor(231, 231, 231, 1);
-                        [self.contentView addSubview:line];
-                        [line mas_makeConstraints:^(MASConstraintMaker *make) {
+                        [self.line mas_remakeConstraints:^(MASConstraintMaker *make) {
                             make.leading.trailing.equalTo(@0);
                             make.top.mas_equalTo(img_V.mas_bottom).with.mas_offset(@25);
                             make.height.equalTo(@1);
                             make.bottom.equalTo(@0);
                         }];
+                        [self layoutIfNeeded];
+                        return;
                     }
                 }
-                return;
+                
             }
             
             for (int j = 0; j < cols; j++) {
@@ -205,7 +216,23 @@
     
 }
 
+- (void)cleanDataForReuse{
+    for (UIView *dele_V in self.contentView.subviews) {
+        if ([dele_V isKindOfClass:[UIImageView class]] && dele_V.tag != 6888) {
+            [dele_V removeFromSuperview];
+        }
+        
+        if ([dele_V isKindOfClass:[UILabel class]] && dele_V.tag == 7888) {
+            [dele_V removeFromSuperview];
+        }
+    }
+}
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    [self cleanDataForReuse];
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

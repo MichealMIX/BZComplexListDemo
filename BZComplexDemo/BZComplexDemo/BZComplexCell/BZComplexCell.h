@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)UILabel *contentLabel;
 
+- (void)updateCellWithData:(NSDictionary *)data_dict;
+
 - (void)updateCellWithImageArray:(NSArray *)img_arr;
 
 @end
