@@ -8,11 +8,14 @@
 
 #import "ViewController.h"
 #import "BZComplexCell.h"
+#import "YYFPSLabel.h"
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)UITableView *tv;
 
 @property(nonatomic,copy)NSArray *dataArray;
+
+@property (nonatomic, strong) YYFPSLabel *fpsLabel;
 
 @end
 
@@ -25,6 +28,7 @@ static NSString *cellId = @"BZComplexCell";
     self.title = @"BZComplexDemo";
     self.view.backgroundColor = [UIColor whiteColor];
     [self initUI];
+    [self testFPSLabel];
 }
 
 - (void)initUI{
@@ -72,6 +76,15 @@ static NSString *cellId = @"BZComplexCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - fps moniter(CPU)
+
+- (void)testFPSLabel {
+    _fpsLabel = [YYFPSLabel new];
+    _fpsLabel.frame = CGRectMake(200, 200, 50, 30);
+    [_fpsLabel sizeToFit];
+    [self.view addSubview:_fpsLabel];
 }
 
 #pragma mark - getter&setter

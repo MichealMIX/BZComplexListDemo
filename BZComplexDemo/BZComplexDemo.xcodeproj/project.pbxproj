@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		47D5B2474CBB30E620DE5316 /* Pods_BZComplexDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE204A8B7531BEDA1B62E498 /* Pods_BZComplexDemo.framework */; };
+		9AD56FA724B723AF000166E0 /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD56FA324B723AF000166E0 /* YYFPSLabel.m */; };
+		9AD56FA824B723AF000166E0 /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD56FA524B723AF000166E0 /* YYWeakProxy.m */; };
 		9AF4403524AEFF6400187440 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF4403424AEFF6400187440 /* AppDelegate.m */; };
 		9AF4403B24AEFF6500187440 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF4403A24AEFF6500187440 /* ViewController.m */; };
 		9AF4403E24AEFF6500187440 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AF4403C24AEFF6500187440 /* Main.storyboard */; };
@@ -40,6 +42,10 @@
 
 /* Begin PBXFileReference section */
 		556EC34F0466D2BDD76433A3 /* Pods-BZComplexDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BZComplexDemo.release.xcconfig"; path = "Target Support Files/Pods-BZComplexDemo/Pods-BZComplexDemo.release.xcconfig"; sourceTree = "<group>"; };
+		9AD56FA324B723AF000166E0 /* YYFPSLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
+		9AD56FA424B723AF000166E0 /* YYWeakProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
+		9AD56FA524B723AF000166E0 /* YYWeakProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
+		9AD56FA624B723AF000166E0 /* YYFPSLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
 		9AF4403024AEFF6400187440 /* BZComplexDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BZComplexDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AF4403324AEFF6400187440 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9AF4403424AEFF6400187440 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -154,6 +160,10 @@
 		9AF4406824AF00B600187440 /* support file */ = {
 			isa = PBXGroup;
 			children = (
+				9AD56FA624B723AF000166E0 /* YYFPSLabel.h */,
+				9AD56FA324B723AF000166E0 /* YYFPSLabel.m */,
+				9AD56FA424B723AF000166E0 /* YYWeakProxy.h */,
+				9AD56FA524B723AF000166E0 /* YYWeakProxy.m */,
 				9AF4406A24AF00CD00187440 /* IUtil.h */,
 				9AF4406924AF00CD00187440 /* IUtil.m */,
 				9AF4406B24AF00CD00187440 /* PrefixHeader.pch */,
@@ -370,6 +380,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AD56FA724B723AF000166E0 /* YYFPSLabel.m in Sources */,
+				9AD56FA824B723AF000166E0 /* YYWeakProxy.m in Sources */,
 				9AF4403B24AEFF6500187440 /* ViewController.m in Sources */,
 				9AF4406C24AF00CD00187440 /* IUtil.m in Sources */,
 				9AF4403524AEFF6400187440 /* AppDelegate.m in Sources */,
