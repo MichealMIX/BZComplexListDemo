@@ -10,6 +10,8 @@
 		47D5B2474CBB30E620DE5316 /* Pods_BZComplexDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE204A8B7531BEDA1B62E498 /* Pods_BZComplexDemo.framework */; };
 		9AD56FA724B723AF000166E0 /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD56FA324B723AF000166E0 /* YYFPSLabel.m */; };
 		9AD56FA824B723AF000166E0 /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD56FA524B723AF000166E0 /* YYWeakProxy.m */; };
+		9AD56FAF24B80036000166E0 /* BZDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD56FAE24B80036000166E0 /* BZDataManager.m */; };
+		9AD56FB324B80840000166E0 /* BZViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD56FB224B80840000166E0 /* BZViewModel.m */; };
 		9AF4403524AEFF6400187440 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF4403424AEFF6400187440 /* AppDelegate.m */; };
 		9AF4403B24AEFF6500187440 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF4403A24AEFF6500187440 /* ViewController.m */; };
 		9AF4403E24AEFF6500187440 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AF4403C24AEFF6500187440 /* Main.storyboard */; };
@@ -46,6 +48,10 @@
 		9AD56FA424B723AF000166E0 /* YYWeakProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
 		9AD56FA524B723AF000166E0 /* YYWeakProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
 		9AD56FA624B723AF000166E0 /* YYFPSLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
+		9AD56FAD24B80036000166E0 /* BZDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BZDataManager.h; sourceTree = "<group>"; };
+		9AD56FAE24B80036000166E0 /* BZDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BZDataManager.m; sourceTree = "<group>"; };
+		9AD56FB124B80840000166E0 /* BZViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BZViewModel.h; sourceTree = "<group>"; };
+		9AD56FB224B80840000166E0 /* BZViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BZViewModel.m; sourceTree = "<group>"; };
 		9AF4403024AEFF6400187440 /* BZComplexDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BZComplexDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AF4403324AEFF6400187440 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9AF4403424AEFF6400187440 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -98,6 +104,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9AD56FB024B80701000166E0 /* BZViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9AD56FB124B80840000166E0 /* BZViewModel.h */,
+				9AD56FB224B80840000166E0 /* BZViewModel.m */,
+			);
+			path = BZViewModel;
+			sourceTree = "<group>";
+		};
 		9AF4402724AEFF6400187440 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +138,7 @@
 		9AF4403224AEFF6400187440 /* BZComplexDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9AD56FB024B80701000166E0 /* BZViewModel */,
 				9AF4407124AF069700187440 /* BZDataCenter */,
 				9AF4406D24AF043500187440 /* BZComplexCell */,
 				9AF4406824AF00B600187440 /* support file */,
@@ -184,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				9AF4407224AF06E300187440 /* BZListData.plist */,
+				9AD56FAD24B80036000166E0 /* BZDataManager.h */,
+				9AD56FAE24B80036000166E0 /* BZDataManager.m */,
 			);
 			path = BZDataCenter;
 			sourceTree = "<group>";
@@ -383,6 +401,8 @@
 				9AD56FA724B723AF000166E0 /* YYFPSLabel.m in Sources */,
 				9AD56FA824B723AF000166E0 /* YYWeakProxy.m in Sources */,
 				9AF4403B24AEFF6500187440 /* ViewController.m in Sources */,
+				9AD56FAF24B80036000166E0 /* BZDataManager.m in Sources */,
+				9AD56FB324B80840000166E0 /* BZViewModel.m in Sources */,
 				9AF4406C24AF00CD00187440 /* IUtil.m in Sources */,
 				9AF4403524AEFF6400187440 /* AppDelegate.m in Sources */,
 				9AF4404624AEFF6800187440 /* main.m in Sources */,

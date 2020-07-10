@@ -7,7 +7,6 @@
 //
 
 #import "BZComplexCell.h"
-
 @interface BZComplexCell()
 
 @property(nonatomic,assign)NSInteger itemHW;
@@ -15,6 +14,8 @@
 @property(nonatomic,assign)NSInteger itemPadding;
 
 @property(nonatomic,strong)UILabel *line;
+
+@property(nonatomic,strong)NSDictionary *data;
 
 @end
 
@@ -34,74 +35,113 @@
 }
 
 - (void)initUI{
-    self.headerImageV = [[UIImageView alloc] init];
-    self.headerImageV.layer.cornerRadius = 20;
-    self.headerImageV.layer.masksToBounds = YES;
-    self.headerImageV.tag = 6888;
-    self.headerImageV.backgroundColor = iColor(202, 202, 202, 1);
-    [self.contentView addSubview:self.headerImageV];
-    [self.headerImageV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@25);
-        make.left.equalTo(@25);
-        make.size.mas_equalTo(CGSizeMake(40, 40));
-    }];
+
+    self.imageLayer = [CALayer layer];
+    self.imageLayer.frame = CGRectMake(25, 25, 40, 40);
+    self.imageLayer.cornerRadius = 20;
+    self.imageLayer.masksToBounds = YES;
+    self.imageLayer.contentsGravity = kCAGravityResizeAspect;
+    [self.contentView.layer addSublayer:self.imageLayer];
+        
     
-    self.nameTitleLabel = [[UILabel alloc] init];
-    self.nameTitleLabel.font = [UIFont systemFontOfSize:14];
-    self.nameTitleLabel.textColor = iColor(224, 108, 55, 1);
-    [self.contentView addSubview:self.nameTitleLabel];
-    [self.nameTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.headerImageV);
-        make.left.mas_equalTo(self.headerImageV.mas_right).with.mas_offset(@10);
-        make.right.equalTo(@0).with.mas_offset(@-25);
-    }];
     
-    self.deviceTitleLabel = [[UILabel alloc] init];
-    self.deviceTitleLabel.font = [UIFont systemFontOfSize:10];
-    self.deviceTitleLabel.textColor = iColor(90, 123, 163, 1);
-    [self.contentView addSubview:self.deviceTitleLabel];
-    [self.deviceTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.nameTitleLabel.mas_bottom).with.mas_offset(@5);
-        make.left.mas_equalTo(self.nameTitleLabel);
-        make.right.equalTo(@0).with.mas_offset(@-25);
-//        make.bottom.equalTo(@0).with.mas_offset(@(-25));
-    }];
     
-    self.contentLabel = [[UILabel alloc] init];
+    self.nameTitleLayer = [CATextLayer layer];
+    //设置分辨率
+    self.nameTitleLayer.contentsScale = [UIScreen mainScreen].scale;
+    //字体的大小
+    self.nameTitleLayer.fontSize = 14.f;
+    //字体的对齐方式
+    self.nameTitleLayer.alignmentMode = kCAAlignmentLeft;
+    //字体的颜色
+    self.nameTitleLayer.foregroundColor = iColor(224, 108, 55, 1).CGColor;
+    [self.contentView.layer addSublayer:self.nameTitleLayer];
+    
+    
+    self.deviceTitleLayer = [CATextLayer layer];
+    //设置分辨率
+    self.deviceTitleLayer.contentsScale = [UIScreen mainScreen].scale;
+    //字体的大小
+    self.deviceTitleLayer.fontSize = 10.f;
+    //字体的对齐方式
+    self.deviceTitleLayer.alignmentMode = kCAAlignmentLeft;
+    //字体的颜色
+    self.deviceTitleLayer.foregroundColor = iColor(90, 123, 163, 1).CGColor;
+    [self.contentView.layer addSublayer:self.deviceTitleLayer];
+    
+    /*self.contentLabel = [[UILabel alloc] init];
     self.contentLabel.font = [UIFont systemFontOfSize:16];
     self.contentLabel.numberOfLines = 0;
     self.contentLabel.textColor = [UIColor blackColor];
 
     [self.contentView addSubview:self.contentLabel];
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.headerImageV.mas_bottom).with.mas_offset(@20);
+        make.top.mas_equalTo(@80).with.mas_offset(@20);
         make.left.mas_equalTo(@(30));
         make.right.equalTo(@0).with.mas_offset(@-25);
-    }];
+    }];*/
+    
+    self.contentLayer = [CATextLayer layer];
+    //设置分辨率
+    self.contentLayer.contentsScale = [UIScreen mainScreen].scale;
+    //字体的大小
+    self.contentLayer.fontSize = 16.f;
+    //字体的对齐方式
+    self.contentLayer.alignmentMode = kCAAlignmentLeft;
+    //字体的颜色
+    self.contentLayer.foregroundColor = [UIColor blackColor].CGColor;
+    self.contentLayer.wrapped = YES;
+    [self.contentView.layer addSublayer:self.contentLayer];
     
    self.line = [[UILabel alloc] init];
    self.line.backgroundColor = iColor(231, 231, 231, 1);
    [self.contentView addSubview:self.line];
-   [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
-       make.leading.trailing.equalTo(@0);
-       make.top.mas_equalTo(self.contentLabel.mas_bottom).with.mas_offset(@25);
-       make.height.equalTo(@1);
-       make.bottom.equalTo(@0);
-   }];
+//   [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
+//       make.leading.trailing.equalTo(@0);
+//       make.top.mas_equalTo(self.contentLabel.mas_bottom).with.mas_offset(@25);
+//       make.height.equalTo(@1);
+//       make.bottom.equalTo(@0);
+//   }];
     
 }
 
 - (void)updateCellWithData:(NSDictionary *)data_dict{
-    self.nameTitleLabel.text = data_dict[@"UserNameString"];
-    self.deviceTitleLabel.text = data_dict[@"DeviceTypeString"];
-    self.contentLabel.text = data_dict[@"ContentLabelString"];
+//    self.nameTitleLabel.text = data_dict[@"UserNameString"];
+    
+    self.nameTitleLayer.string = data_dict[@"UserNameString"];
+    self.deviceTitleLayer.string = data_dict[@"DeviceTypeString"];
+    //self.contentLabel.text = data_dict[@"ContentLabelString"];
     NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:data_dict[@"UserHeaderUrl"]]];
-    self.headerImageV.image = [UIImage imageWithData:data];
+    self.imageLayer.contents = (__bridge id _Nullable)([UIImage imageWithData:data].CGImage);
+//    self.headerImageV.image = [UIImage imageWithData:data];
 //    [self.headerImageV sd_setImageWithURL:[NSURL URLWithString:data_dict[@"UserHeaderUrl"]]];
     [self layoutIfNeeded];
 }
 
-- (void)updateCellWithImageArray:(NSArray *)img_arr{
+- (void)updateCellWithData:(NSDictionary *)data titleH:(CGFloat)titleLabel_H deviceH:(CGFloat)deviceLabel_H contentH:(CGFloat)contentH{
+    NSData * imgdata = [NSData dataWithContentsOfURL:[NSURL URLWithString:data[@"UserHeaderUrl"]]];
+    self.imageLayer.contents = (__bridge id _Nullable)([UIImage imageWithData:imgdata].CGImage);
+    self.nameTitleLayer.string = data[@"UserNameString"];
+    self.nameTitleLayer.frame = CGRectMake(75, 25, 200, titleLabel_H);
+    self.deviceTitleLayer.string = data[@"DeviceTypeString"];
+    self.deviceTitleLayer.frame = CGRectMake(75, 25+titleLabel_H+5, 200, deviceLabel_H);
+    NSMutableAttributedString *fontAttributeNameStr = [[NSMutableAttributedString alloc]initWithString:data[@"ContentLabelString"]];
+    
+    // 创建NSMutableParagraphStyle实例
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 5;       //字间距5
+    paragraphStyle.paragraphSpacing = 5;       //行间距是20
+    paragraphStyle.alignment = NSTextAlignmentLeft;   //对齐方式为居中对齐
+    
+    [fontAttributeNameStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, fontAttributeNameStr.length)];
+    [fontAttributeNameStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(0, fontAttributeNameStr.length)];
+    self.contentLayer.string = fontAttributeNameStr;
+    self.contentLayer.frame = CGRectMake(20, 25+titleLabel_H+5+deviceLabel_H+25+deviceLabel_H, iScreenW-40, contentH);
+    self.line.frame = CGRectMake(0, 25+titleLabel_H+5+deviceLabel_H+25+contentH+20, iScreenW, 1);
+    [self layoutIfNeeded];
+}
+
+/*- (void)updateCellWithImageArray:(NSArray *)img_arr{
     int cols;
     int rows;
     
@@ -193,7 +233,7 @@
     }
     
     [self layoutIfNeeded];
-}
+}*/
 
 - (void)countingRow:(int *)rows numberOfCol:(int *)cols imageArr:(NSArray *)img_arr{
     if (img_arr.count <= 0) {
@@ -247,5 +287,7 @@
 
     // Configure the view for the selected state
 }
+
+
 
 @end

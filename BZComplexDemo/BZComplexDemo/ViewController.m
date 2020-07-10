@@ -9,17 +9,14 @@
 #import "ViewController.h"
 #import "BZComplexCell.h"
 #import "YYFPSLabel.h"
+#import "BZViewModel.h"
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)UITableView *tv;
 
-@property(nonatomic,copy)NSArray *dataArray;
-
 @property (nonatomic, strong) YYFPSLabel *fpsLabel;
 
 @end
-
-static NSString *cellId = @"BZComplexCell";
 
 @implementation ViewController
 
@@ -29,6 +26,14 @@ static NSString *cellId = @"BZComplexCell";
     self.view.backgroundColor = [UIColor whiteColor];
     [self initUI];
     [self testFPSLabel];
+    [self fetchNetwork];
+}
+
+//模拟网络请求
+- (void)fetchNetwork{
+    [BZViewModel getListViewData:^{
+
+    }];
 }
 
 - (void)initUI{
@@ -36,9 +41,9 @@ static NSString *cellId = @"BZComplexCell";
     self.tv.dataSource = self;
     self.tv.delegate = self;
     self.tv.separatorStyle=UITableViewCellSeparatorStyleNone;
-    self.tv.estimatedRowHeight=100.f;
-    self.tv.rowHeight = UITableViewAutomaticDimension;
-    [self.tv registerClass:[BZComplexCell class] forCellReuseIdentifier:cellId];
+    //self.tv.estimatedRowHeight=100.f;
+    //self.tv.rowHeight = UITableViewAutomaticDimension;
+   [BZViewModel registerCellsFor:self.tv];
     [self.view addSubview:self.tv];
     [self.tv mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(kNavBarAndStatusBarHeight);
@@ -56,21 +61,15 @@ static NSString *cellId = @"BZComplexCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataArray.count;
+    return [BZViewModel numberOfTableRow];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewAutomaticDimension;
+    return [BZViewModel heightOfRowAt:indexPath];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    BZComplexCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[BZComplexCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-    }
-    NSDictionary *data_dict = self.dataArray[indexPath.row];
-    [cell updateCellWithData:data_dict];
-    [cell updateCellWithImageArray:[data_dict objectForKey:@"ContentImageArray"]];
+    UITableViewCell <BZViewModelDataDelegate>*cell = [BZViewModel cellFrom:tableView forIndex:indexPath];
     return cell;
 }
 
@@ -85,15 +84,6 @@ static NSString *cellId = @"BZComplexCell";
     _fpsLabel.frame = CGRectMake(200, 200, 50, 30);
     [_fpsLabel sizeToFit];
     [self.view addSubview:_fpsLabel];
-}
-
-#pragma mark - getter&setter
-
-- (NSArray *)dataArray{
-    if (!_dataArray) {
-        _dataArray = iRes4ary(@"BZListData.plist");
-    }
-    return _dataArray;
 }
 
 @end

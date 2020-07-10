@@ -10,17 +10,27 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface BZComplexCell : UITableViewCell
 
-@property(nonatomic,strong)UIImageView *headerImageV;
+//@property(nonatomic,strong)UIImageView *headerImageV;
+@property(nonatomic,strong)CALayer *imageLayer;
 
-@property(nonatomic,strong)UILabel *nameTitleLabel;
+//@property(nonatomic,strong)UILabel *nameTitleLabel;
 
-@property(nonatomic,strong)UILabel *deviceTitleLabel;
+@property(nonatomic,strong)CATextLayer *nameTitleLayer;
 
-@property(nonatomic,strong)UILabel *contentLabel;
+//@property(nonatomic,strong)UILabel *deviceTitleLabel;
+
+@property(nonatomic,strong)CATextLayer *deviceTitleLayer;
+
+//@property(nonatomic,strong)UILabel *contentLabel;
+
+@property(nonatomic,strong)CATextLayer *contentLayer;
 
 - (void)updateCellWithData:(NSDictionary *)data_dict;
+
+- (void)updateCellWithData:(NSDictionary *)data titleH:(CGFloat)titleLabel_H deviceH:(CGFloat)deviceLabel_H contentH:(CGFloat)contentH;
 
 - (void)updateCellWithImageArray:(NSArray *)img_arr;
 
