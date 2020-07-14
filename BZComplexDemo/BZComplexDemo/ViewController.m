@@ -40,7 +40,7 @@
     self.tv = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tv.dataSource = self;
     self.tv.delegate = self;
-    self.tv.separatorStyle=UITableViewCellSeparatorStyleNone;
+//    self.tv.separatorStyle=UITableViewCellSeparatorStyleNone;
     //self.tv.estimatedRowHeight=100.f;
     //self.tv.rowHeight = UITableViewAutomaticDimension;
    [BZViewModel registerCellsFor:self.tv];

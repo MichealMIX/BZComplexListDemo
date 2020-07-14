@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateCellWithData:(NSDictionary *)data titleH:(CGFloat)titleLabel_H deviceH:(CGFloat)deviceLabel_H contentH:(CGFloat)contentH;
 
-- (void)updateCellWithImageArray:(NSArray *)img_arr;
+- (void)updateCellWithImageArray:(NSArray *)img_arr originY:(CGFloat)originY;
 
 @end
 

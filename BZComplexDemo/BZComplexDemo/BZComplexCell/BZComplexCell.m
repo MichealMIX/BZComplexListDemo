@@ -136,47 +136,39 @@
     [fontAttributeNameStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, fontAttributeNameStr.length)];
     [fontAttributeNameStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(0, fontAttributeNameStr.length)];
     self.contentLayer.string = fontAttributeNameStr;
-    self.contentLayer.frame = CGRectMake(20, 25+titleLabel_H+5+deviceLabel_H+25+deviceLabel_H, iScreenW-40, contentH);
-    self.line.frame = CGRectMake(0, 25+titleLabel_H+5+deviceLabel_H+25+contentH+20, iScreenW, 1);
+    self.contentLayer.frame = CGRectMake(20, 25+titleLabel_H+5+deviceLabel_H+25, iScreenW-40, contentH);
+    
+    [self updateCellWithImageArray:data[@"ContentImageArray"] originY:25+titleLabel_H+5+deviceLabel_H+25+contentH];
     [self layoutIfNeeded];
 }
 
-/*- (void)updateCellWithImageArray:(NSArray *)img_arr{
+- (void)updateCellWithImageArray:(NSArray *)img_arr originY:(CGFloat)originY{
     int cols;
     int rows;
     
     [self countingRow:&rows numberOfCol:&cols imageArr:img_arr];
     if (img_arr.count == 0) {
-        
-        [self.line mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.leading.trailing.equalTo(@0);
-            make.top.mas_equalTo(self.contentLabel.mas_bottom).with.mas_offset(@25);
-            make.height.equalTo(@1);
-            make.bottom.equalTo(@0);
-        }];
+
+        self.line.frame = CGRectMake(0, originY+20, iScreenW, 1);
         [self layoutIfNeeded];
         return;
     }
     
     if (img_arr.count == 1) {
-        UIImageView *img_V = [[UIImageView alloc] init];
+        UIImageView *img_V = [[UIImageView alloc] initWithFrame:CGRectMake(25, originY+25, 150, 200)];
         img_V.backgroundColor = iColor(202, 202, 202, 1);
         NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:img_arr[0]]];
         img_V.image = [UIImage imageWithData:data];
 //        [img_V sd_setImageWithURL:[NSURL URLWithString:img_arr[0]]];
         [self.contentView addSubview:img_V];
-        [img_V mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(25);
-            make.top.mas_equalTo(self.contentLabel.mas_bottom).with.mas_offset(20);
-            make.size.mas_equalTo(CGSizeMake(150, 200));
-        }];
         
-        [self.line mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.leading.trailing.equalTo(@0);
-            make.top.mas_equalTo(img_V.mas_bottom).with.mas_offset(@25);
-            make.height.equalTo(@1);
-            make.bottom.equalTo(@0);
-        }];
+        self.line.frame = CGRectMake(0, originY+25+200+20, iScreenW, 1);
+//        [self.line mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.leading.trailing.equalTo(@0);
+//            make.top.mas_equalTo(img_V.mas_bottom).with.mas_offset(@25);
+//            make.height.equalTo(@1);
+//            make.bottom.equalTo(@0);
+//        }];
         [self layoutIfNeeded];
         return;
     }
@@ -186,54 +178,54 @@
         self.itemPadding = 10;
         self.itemHW = ((iScreenW-50)-((cols-1)*self.itemPadding))/cols;
         for (int i = 0; i < rows; i++) {
-            
+
             if (i == rows-1) {
                 for (int j = 0; j < img_arr.count-i*cols; j++) {
-                    UIImageView *img_V = [[UIImageView alloc] init];
+                    UIImageView *img_V = [[UIImageView alloc] initWithFrame:CGRectMake(j*(self.itemHW+self.itemPadding)+25, 20+i*(self.itemHW+self.itemPadding)+originY, self.itemHW, self.itemHW)];
                     img_V.backgroundColor = iColor(202, 202, 202, 1);
 //                    [img_V sd_setImageWithURL:[NSURL URLWithString:img_arr[index++]]];
                     NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:img_arr[index++]]];
                     img_V.image = [UIImage imageWithData:data];
                     [self.contentView addSubview:img_V];
-                    [img_V mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.left.mas_equalTo(j*(self.itemHW+self.itemPadding)+25);
-                        make.top.mas_equalTo(self.contentLabel.mas_bottom).with.mas_offset(20+i*(self.itemHW+self.itemPadding));
-                        make.size.mas_equalTo(CGSizeMake(self.itemHW, self.itemHW));
-                    }];
-                    
+//                    [img_V mas_makeConstraints:^(MASConstraintMaker *make) {
+//                        make.left.mas_equalTo(j*(self.itemHW+self.itemPadding)+25);
+//                        make.top.mas_equalTo(originY).with.mas_offset(20+i*(self.itemHW+self.itemPadding));
+//                        make.size.mas_equalTo(CGSizeMake(self.itemHW, self.itemHW));
+//                    }];
+
                     if (j == img_arr.count-i*cols -1) {
-                        
-                        [self.line mas_remakeConstraints:^(MASConstraintMaker *make) {
-                            make.leading.trailing.equalTo(@0);
-                            make.top.mas_equalTo(img_V.mas_bottom).with.mas_offset(@25);
-                            make.height.equalTo(@1);
-                            make.bottom.equalTo(@0);
-                        }];
+                        self.line.frame = CGRectMake(0, originY+25+200+20, iScreenW, 1);
+//                        [self.line mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                            make.leading.trailing.equalTo(@0);
+//                            make.top.mas_equalTo(img_V.mas_bottom).with.mas_offset(@25);
+//                            make.height.equalTo(@1);
+//                            make.bottom.equalTo(@0);
+//                        }];
                         [self layoutIfNeeded];
                         return;
                     }
                 }
-                
+
             }
-            
+
             for (int j = 0; j < cols; j++) {
-                UIImageView *img_V = [[UIImageView alloc] init];
+                UIImageView *img_V = [[UIImageView alloc] initWithFrame:CGRectMake(j*(self.itemHW+self.itemPadding)+25, 20+i*(self.itemHW+self.itemPadding)+originY, self.itemHW, self.itemHW)];
                 img_V.backgroundColor = iColor(202, 202, 202, 1);
                 NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:img_arr[index++]]];
                 img_V.image = [UIImage imageWithData:data];
 //                [img_V sd_setImageWithURL:[NSURL URLWithString:img_arr[index++]]];
                 [self.contentView addSubview:img_V];
-                [img_V mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.mas_equalTo(j*(self.itemHW+self.itemPadding)+25);
-                    make.top.mas_equalTo(self.contentLabel.mas_bottom).with.mas_offset(20+i*(self.itemHW+self.itemPadding));
-                    make.size.mas_equalTo(CGSizeMake(self.itemHW, self.itemHW));
-                }];
+//                [img_V mas_makeConstraints:^(MASConstraintMaker *make) {
+//                    make.left.mas_equalTo(j*(self.itemHW+self.itemPadding)+25);
+//                    make.top.mas_equalTo(originY).with.mas_offset(20+i*(self.itemHW+self.itemPadding));
+//                    make.size.mas_equalTo(CGSizeMake(self.itemHW, self.itemHW));
+//                }];
             }
         }
     }
-    
+
     [self layoutIfNeeded];
-}*/
+}
 
 - (void)countingRow:(int *)rows numberOfCol:(int *)cols imageArr:(NSArray *)img_arr{
     if (img_arr.count <= 0) {
@@ -270,9 +262,9 @@
             [dele_V removeFromSuperview];
         }
         
-        if ([dele_V isKindOfClass:[UILabel class]] && dele_V.tag == 7888) {
-            [dele_V removeFromSuperview];
-        }
+//        if ([dele_V isKindOfClass:[UILabel class]] && dele_V.tag == 7888) {
+//            [dele_V removeFromSuperview];
+//        }
     }
 }
 

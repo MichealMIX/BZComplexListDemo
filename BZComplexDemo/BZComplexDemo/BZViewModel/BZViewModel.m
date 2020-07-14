@@ -76,6 +76,8 @@
         [tempDict setValue:deviceH forKey:@"deviceH"];
         NSNumber *contentH = [NSNumber numberWithFloat:[self countingLabelHeight:dict[@"ContentLabelString"] fontsize:16 width:iScreenW-40]];
         [tempDict setValue:contentH forKey:@"contentH"];
+        NSNumber *imageH = [NSNumber numberWithFloat:[self countingHeight:dict[@"ContentImageArray"]]];
+        [tempDict setValue:imageH forKey:@"imageH"];
         NSString *key = [NSString stringWithFormat:@"frameKey+%zu",index];
         [frameDict setValue:tempDict forKey:key];
     });
@@ -98,6 +100,34 @@
     return [BZDataManager shared].data.count;
 }
 
++ (CGFloat)countingHeight:(NSArray *)img_arr{
+    if (img_arr.count <= 0) {
+        //无图片
+        return 0;
+    }else if (img_arr.count == 1){
+        //单图放原始大小
+        return 200;
+    }else if (img_arr.count == 2){
+        //两图按照2图，尺寸1
+        int cols = 2;
+        return ((iScreenW-50)-((cols-1)*10))/cols;
+    }else if (img_arr.count <=4){
+        //3-4图按照，尺寸2
+        int cols = 2;
+        return ((iScreenW-50)-((cols-1)*10))/cols;
+    }else if (img_arr.count <=6){
+        //5-6图，尺寸3
+        int cols = 3;
+        return ((iScreenW-50)-((cols-1)*10))/cols;
+    }else if (img_arr.count <=9){
+        //7-9图，尺寸4
+        int cols = 3;
+        return ((iScreenW-50)-((cols-1)*10))/cols;
+    }
+    return 0;
+    
+}
+
 + (CGFloat)heightOfRowAt:(NSIndexPath *)indexPath{
     NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:@"CELLFRAMEKEY"];
     NSString *key = [NSString stringWithFormat:@"frameKey+%zu",indexPath.row];
@@ -105,8 +135,8 @@
     CGFloat title_h = [[frameDict objectForKey:@"titleH"] floatValue];
     CGFloat device_h = [[frameDict objectForKey:@"deviceH"] floatValue];
     CGFloat content_h = [[frameDict objectForKey:@"contentH"] floatValue];
-
-    return 25+title_h+5+device_h+25+content_h+20+1;
+    CGFloat image_h = [[frameDict objectForKey:@"imageH"] floatValue];
+    return 25+title_h+5+device_h+25+content_h+25+image_h+20+1;
 }
 
 @end
